@@ -4,16 +4,31 @@ import * as path from 'path';
 const IMAGE_PATH = path.join(__dirname, '..', 'media', 'capa.jpeg');
 const FIXED_SUBDOMAIN = 'area-teste';
 
+const selectorsList = {
+  emailField : "[name='email']",
+  correctEmail: "jann.solano@gmail.com",
+  passwordField: "[name='password']",
+  correctpassword: "Minh@senha120x",
+  loginButton: "[type='submit']",
+  MembersDashboard: "[href='/-/members/my-areas']",
+  newMembersButton: "[data-sentry-element='Button']",
+  membersNameField: "[name='name']",
+  membersNameTitle: "areamembros",
+  descriptionField: "[name='description']",
+  membersDescription: "este texto é temporario",
+  membersSubdomain: "[name='subdomain']"
+}
+
 test('create member area', async ({ page }) => {
   await page.goto('https://app.clickmax.io');
-  await page.locator("[name='email']").fill("jann.solano@gmail.com");
-  await page.locator("[name='password']").fill("Minh@senha120x");
-  await page.locator("[type='submit']").click();
-  await page.locator("[href='/-/members/my-areas']").click();
-  await page.locator("[data-sentry-element='Button']").nth(0).click();
-  await page.locator("[name='name']").fill("areamembros");
-  await page.locator("[name='description']").fill("este texto é temporario");
-  await page.locator("[name='subdomain']").fill(FIXED_SUBDOMAIN);
+  await page.locator(selectorsList.emailField).fill(selectorsList.correctEmail);
+  await page.locator(selectorsList.passwordField).fill(selectorsList.correctpassword);
+  await page.locator(selectorsList.loginButton).click();
+  await page.locator(selectorsList.MembersDashboard).click();
+  await page.locator(selectorsList.newMembersButton).nth(0).click();
+  await page.locator(selectorsList.membersNameField).fill(selectorsList.membersNameTitle);
+  await page.locator(selectorsList.descriptionField).fill(selectorsList.membersDescription);
+  await page.locator(selectorsList.membersSubdomain).fill(FIXED_SUBDOMAIN);
   const verifyButton = page.getByRole('button', { name: 'Verificar' });
   await expect(verifyButton).toBeEnabled({ timeout: 10000 });
   await verifyButton.click();
