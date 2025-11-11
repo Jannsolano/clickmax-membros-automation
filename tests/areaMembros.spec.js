@@ -15,10 +15,11 @@ const FIXED_SUBDOMAIN = 'area-teste';
 test('create member area', async ({ page }) => {
   await page.goto('https://app.clickmax.io');
   await Login(page);
-  await page.locator(areaMembrosSelectors.membersDashboard).click();
+  await page.goto('https://app.clickmax.io/-/members/my-areas');
+  // await page.locator(areaMembrosSelectors.membersDashboard).click();
   await page.locator(areaMembrosSelectors.newMembersButton).nth(0).click();
   await page.locator(areaMembrosSelectors.membersNameField).fill(areaMembrosSelectors.membersNameTitle);
-  await page.locator(areaMembrosSelectors.descriptionField).fill(areaMembrosSelectors.membersDescription);
+  await page.locator(areaMembrosSelectors.descriptionField).fill(areaMembrosSelectors.descriptionText);
   await page.locator(areaMembrosSelectors.membersSubdomain).fill(FIXED_SUBDOMAIN);
   const verifyButton = page.getByRole('button', { name: 'Verificar' });
   await expect(verifyButton).toBeEnabled({ timeout: 10000 });
