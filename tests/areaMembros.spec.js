@@ -6,9 +6,9 @@ const FIXED_SUBDOMAIN = 'area-teste';
 
 const selectorsList = {
   emailField : "[name='email']",
-  correctEmail: "jann.solano@gmail.com",
+  correctEmail: "insira o email",
   passwordField: "[name='password']",
-  correctpassword: "Minh@senha120x",
+  correctpassword: "insira a senha",
   loginButton: "[type='submit']",
   MembersDashboard: "[href='/-/members/my-areas']",
   newMembersButton: "[data-sentry-element='Button']",
