@@ -19,11 +19,15 @@ const selectorsList = {
   membersSubdomain: "[name='subdomain']"
 }
 
-test('create member area', async ({ page }) => {
-  await page.goto('https://app.clickmax.io');
+ async function Login(page){
   await page.locator(selectorsList.emailField).fill(selectorsList.correctEmail);
   await page.locator(selectorsList.passwordField).fill(selectorsList.correctpassword);
   await page.locator(selectorsList.loginButton).click();
+ }
+
+test('create member area', async ({ page }) => {
+  await page.goto('https://app.clickmax.io');
+  await Login(page)
   await page.locator(selectorsList.MembersDashboard).click();
   await page.locator(selectorsList.newMembersButton).nth(0).click();
   await page.locator(selectorsList.membersNameField).fill(selectorsList.membersNameTitle);
